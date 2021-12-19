@@ -1,0 +1,69 @@
+<div class="beer__options">
+  <i class="fas fa-cog" (click)="handleModalState();" style="cursor: pointer;"></i>
+  <div class="options__modal" *ngIf="showModal">
+    <span class="label__perPage">Items per Page: </span>
+    <select name="perPage" class="elementsOnPageSelector" (change)="handleOptionsChange($event)">
+      <option value="15">15</option>
+      <option value="30">30</option>
+    </select>
+  </div>
+</div>
+<div class="beer__lists">
+  <div class="beer__list--cities cities">
+    <select name="city" class="cities__selector" (change)="handleSelectChange($event)">
+      <option value=""></option>
+      <option *ngFor="let city of cities" value="{{city.value}}">{{city.name}}</option>
+    </select>
+    <table class="cities__list list" *ngIf="inputsCities">
+      <tr class="cities__list__title">
+        <th class="cities__list__column">
+          Id
+        </th>
+        <th class="cities__list__column">
+          Name
+        </th>
+        <th class="cities__list__column">
+          Type
+        </th>
+        <th class="cities__list__column">
+          Street
+        </th>
+      </tr>
+      <tr class="list--item" *ngFor="let input of inputsCities; let i = index">
+        <td class="list--item">{{i+1}}</td>
+        <td class="list--item">{{input.name}}</td>
+        <td class="list--item">{{input.brewery_type}}</td>
+        <td class="list--item">{{input.street}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="beers__list--states states">
+    <select name="state" class="states__selector" (change)="handleSelectChange($event)">
+      <option *ngIf="dataStates.state" value="{{dataStates.state}}">{{dataStates.state}}</option>
+      <option value=""></option>
+      <option *ngFor="let state of states" value="{{state.value}}">{{state.name}}</option>
+    </select>
+    <table class="states__list list" *ngIf="inputsStates">
+      <tr class="states__list__title">
+        <th class="states__list__column">
+          Id
+        </th>
+        <th class="states__list__column">
+          Name
+        </th>
+        <th class="states__list__column">
+          Type
+        </th>
+        <th class="states__list__column">
+          Street
+        </th>
+      </tr>
+      <tr class="list--item" *ngFor="let input of inputsStates; let i = index">
+        <td class="list--item">{{i+1}}</td>
+        <td class="list--item">{{input.name}}</td>
+        <td class="list--item">{{input.brewery_type}}</td>
+        <td class="states__list--item">{{input.street}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
